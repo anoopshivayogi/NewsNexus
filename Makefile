@@ -4,11 +4,6 @@ DOCKER_COMPOSE_FILE = docker-compose.yml
 # Define the name of the docker-compose service
 DOCKER_COMPOSE_SERVICE = mongodb
 
-# Define the name of the docker-compose project
-PROJECT_NAME = newsnexus
-
-# Define the container_id by filtering out
-CONTAINER_ID=$(shell docker ps -q --filter "name=$(PROJECT_NAME)-mongodb-1")
 
 # Start the container in detached mode
 up:
@@ -28,7 +23,7 @@ logs:
 
 # Run a command inside the container
 exec:
-	docker exec -it $(CONTAINER_ID) sh
+	docker-compose exec mongodb sh
 
 # docker prune: used to clear all the stale containers, images, volumes, networks
 prune:
