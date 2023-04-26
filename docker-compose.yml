@@ -1,0 +1,25 @@
+# In Progress
+
+# version: '1.0.0'
+# name: student_clubs_notification
+# services:
+#   flask:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     image: flask_local
+#     ports:
+#       - 8050:8050
+#     environment:
+#       - DEBUG_FLASK=True
+#       - DEBUG_LOGGING=True
+#       - LOGGING_LEVEL=DEBUG
+#       - FLASK_RUN_PORT=5001
+
+# services:
+#   db:
+#     image: mongo:latest
+#       ports:
+#         - "27017:27017"
+#     container_name: mongo
+#     volumes: ./mongodb:/data/db
