@@ -1,0 +1,5 @@
+docker run -d --network mongo-net --name mongo-1 \
+        -e MONGO_INITDB_ROOT_USERNAME=admin \
+        -e MONGO_INITDB_ROOT_PASSWORD=password \
+        -p 27017:27017  \
+        -v /Users/anoop/projects/NewsNexus/mongodb:/data/db mongo
