@@ -1,7 +1,4 @@
-# In Progress
-
 version: '1.0.0'
-name: News Nexus
 services:
   mongodb:
     image: mongo
