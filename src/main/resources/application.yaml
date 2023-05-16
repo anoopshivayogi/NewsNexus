@@ -9,4 +9,4 @@ spring:
       user: admin
       password: password
       uri: mongodb://admin:password@localhost:27017/
-      database: news_nexus_db
+      database: movie-api-db
