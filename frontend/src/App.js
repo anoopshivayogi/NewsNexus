@@ -31,8 +31,8 @@ function App() {
     try{
       const respone = await api.get(`/api/v1/movies/imdb/${movieId}`)
       const singleMovie = respone.data;
-      setMovie(singleMovie.data);
-      setReviews(singleMovie.reviews);
+      setMovie(singleMovie);
+      setReviews(singleMovie.reviewIds);
     }
     catch(error){
       console.log(err);
