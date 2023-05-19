@@ -23,8 +23,8 @@ public class News {
     private String content;
     private String pubDate;
     private String full_description;
-    private String sourceid;
+    private String source_id;
     private List<String> country;
-    private List<String> category;
+    private String category;
     private String language;
 }

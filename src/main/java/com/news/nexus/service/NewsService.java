@@ -16,4 +16,19 @@ public class NewsService {
         return newsRepository.findAll();
     }
 
+    public List<News> newsByCategory(String category){
+        return newsRepository.findNewsByCategory(category);
+    }
+//
+    public List<News> newsBySource_id(String source_id){
+        return newsRepository.findNewsBySource_id(source_id);
+    }
+
+    public List<News> newsByCategoryOrderByPubDate(String category){
+        return newsRepository.findNewsByCategoryOrderByPubDate(category);
+    }
+
+
+
+
 }
