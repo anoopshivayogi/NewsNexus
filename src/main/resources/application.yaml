@@ -1,0 +1,12 @@
+# Tomcat server
+server:
+  port: 8080
+
+# Mongodb credentials
+spring:
+  data:
+    mongodb:
+      user: admin
+      password: password
+      uri: mongodb+srv://admin:passwordd@cluster0.vowtlsi.mongodb.net/
+      database: news_nexus_db

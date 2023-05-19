@@ -1,0 +1,9 @@
+# Mac finder file to be ignored
+.DS_Store
+
+
+# Maven build directory
+/target/
+
+# Spring help file
+/HELP.md
