@@ -4,6 +4,7 @@ import com.news.nexus.model.News;
 import com.news.nexus.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -29,7 +30,14 @@ public class NewsService {
     }
 
     public List<News> NewsByTitleContainingIgnoreCase(String keyword){
-        return newsRepository.findNewsByTitleContainingIgnoreCase(keyword);
+        if (StringUtils.isEmpty(keyword)) {
+            // Handle empty search query, such as returning all news
+            return newsRepository.findAll();
+        } else {
+            // Perform the actual search using GetNewsByTitleContainingIgnoreCase query
+            return newsRepository.findNewsByTitleContainingIgnoreCase(keyword);
+        }
+
     }
 
 

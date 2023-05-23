@@ -34,9 +34,9 @@ public class NewsController {
         return new ResponseEntity<>(newsService.newsByCategoryOrderByPubDate(category), HttpStatus.OK);
     }
 
-    @GetMapping("/search/{keyword}")
+    @GetMapping(value = {"/search/{keyword}", "/search/", "/search"})
     @CrossOrigin
-    public ResponseEntity<List<News>> GetNewsByTitleContainingIgnoreCase(@PathVariable String keyword){
+    public ResponseEntity<List<News>> GetNewsByTitleContainingIgnoreCase(@PathVariable(required = false) String keyword){
         return new ResponseEntity<>(newsService.NewsByTitleContainingIgnoreCase(keyword), HttpStatus.OK);
     }
 
