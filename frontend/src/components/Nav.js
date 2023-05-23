@@ -1,23 +1,24 @@
-import { ReactNode } from 'react';
+import {MoonIcon, SunIcon} from '@chakra-ui/icons';
 import {
-  Box,
-  Flex,
   Avatar,
-  Link,
+  Box,
   Button,
+  Center,
+  Flex,
+  Link,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
   MenuDivider,
-  useDisclosure,
-  useColorModeValue,
+  MenuItem,
+  MenuList,
   Stack,
   useColorMode,
-  Center,
+  useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { SearchBar } from './SearchBar';
+import {ReactNode} from 'react';
+
+import {SearchBar} from './SearchBar';
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -33,11 +34,9 @@ import { SearchBar } from './SearchBar';
 //   </Link>
 // );
 
-
-
 export default function Nav({data, setData}) {
-  const { colorMode, toggleColorMode } = useColorMode();
-//   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {colorMode, toggleColorMode} = useColorMode();
+  //   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -69,7 +68,8 @@ export default function Nav({data, setData}) {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={
+    'https://avatars.dicebear.com/api/male/username.svg'}
                     />
                   </Center>
                   <br />
