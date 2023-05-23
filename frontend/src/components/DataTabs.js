@@ -19,7 +19,7 @@ import { Flex, Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Lin
                       <Card key={innerIndex} maxW='md' mb={4} margin={3}>
                         <CardBody>
                           <Image
-                            src={item.link}
+                            src={item.image_url}
                             alt={item.title}
                             borderRadius='lg'
                           />
