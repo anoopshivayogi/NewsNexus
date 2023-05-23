@@ -27,7 +27,6 @@ function App() {
   const getNews = async () => {
     try{
         const response = await api.get("/api/v1/news");
-        // setNews(response.data);
         console.log(response.data);
         const newsData = groupObjectsByCategory(response.data);
         setNews(newsData);
@@ -45,7 +44,7 @@ function App() {
   return (
       <div className="App">
         <ColorModeScript initialColorMode={"dark"} />
-        <Nav/>
+        <Nav setData={setNews}/>
         <DataTabs data={news}/>
       </div>
   );

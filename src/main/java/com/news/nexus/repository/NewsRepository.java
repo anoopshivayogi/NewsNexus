@@ -16,5 +16,6 @@ public interface NewsRepository extends MongoRepository<News, ObjectId> {
        @Query(value = "{ 'source_id' : ?0 }")
        public List<News> findNewsBySource_id(String source_id);
        public List<News> findNewsByCategoryOrderByPubDate(String category);
+       public List<News> findNewsByTitleContainingIgnoreCase(String keyword);
 
 }

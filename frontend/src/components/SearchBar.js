@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useEffect } from "react";
 import {
   Button,
   Input,
@@ -7,8 +7,47 @@ import {
   InputRightAddon
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
+import api from "../api/axiosConfig";
+import { useState } from 'react';
 
-export const SearchBar = () => {
+function groupObjectsByCategory(objects) {
+  const result = {};
+
+  objects.forEach((obj) => {
+    const { category, ...restData } = obj;
+
+    if (!result[category]) {
+      result[category] = [];
+    }
+
+    result[category].push(restData);
+  });
+
+  return result;
+}
+
+export const SearchBar = ({setData}) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await api.get(`/api/v1/news/search/${searchQuery}`);
+      console.log(response.data);
+      const newsData = groupObjectsByCategory(response.data);
+      setData(newsData);
+      console.log(newsData);
+
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  };
+
+  useEffect(()=>{handleSearch();}, [searchQuery]);
+
   return (
     <>
       <InputGroup borderRadius={5} size="md" width={600}>
@@ -16,12 +55,12 @@ export const SearchBar = () => {
           pointerEvents="none"
           children={<Search2Icon color="gray.600" />}
         />
-        <Input type="text" placeholder="Search News Articles" border="1px solid #949494" />
+        <Input value={searchQuery} onChange={handleInputChange} type="text" placeholder="Search News Articles" border="1px solid #949494" />
         <InputRightAddon
           p={0}
           border="none"
         >
-          <Button size="md" borderLeftRadius={0} borderRightRadius={3.3} border="1px solid #949494">
+          <Button onClick={handleSearch} size="md" borderLeftRadius={0} borderRightRadius={3.3} border="1px solid #949494">
             Search
           </Button>
         </InputRightAddon>
