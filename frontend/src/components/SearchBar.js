@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useEffect } from "react";
 import {
   Button,
   Input,
@@ -31,19 +31,11 @@ export const SearchBar = ({setData}) => {
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
-    handleSearch();
   };
 
   const handleSearch = async () => {
     try {
-      let url;
-      if(Object.keys(searchQuery).length == 0){
-        url = "/api/v1/news";
-      }else{
-        url = `/api/v1/news/search/${searchQuery}`;
-      }
-      console.log(url);
-      const response = await api.get(url);
+      const response = await api.get(`/api/v1/news/search/${searchQuery}`);
       console.log(response.data);
       const newsData = groupObjectsByCategory(response.data);
       setData(newsData);
@@ -53,6 +45,8 @@ export const SearchBar = ({setData}) => {
       console.error('Error fetching search results:', error);
     }
   };
+
+  useEffect(()=>{handleSearch();}, [searchQuery]);
 
   return (
     <>
