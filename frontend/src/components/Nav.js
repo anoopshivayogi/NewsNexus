@@ -1,4 +1,4 @@
-import {MoonIcon, SunIcon} from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -15,10 +15,10 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-} from '@chakra-ui/react';
-import {ReactNode} from 'react';
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
-import {SearchBar} from './SearchBar';
+import { SearchBar } from "./SearchBar";
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -34,42 +34,42 @@ import {SearchBar} from './SearchBar';
 //   </Link>
 // );
 
-export default function Nav({data, setData}) {
-  const {colorMode, toggleColorMode} = useColorMode();
+export default function Nav({ data, setData }) {
+  const { colorMode, toggleColorMode } = useColorMode();
   //   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>News Nexus</Box>
 
           <SearchBar setData={setData} />
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
               <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
                   <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    size={"sm"}
+                    src={"https://avatars.dicebear.com/api/male/username.svg"}
                   />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems={"center"}>
                   <br />
                   <Center>
                     <Avatar
-                      size={'2xl'}
-                      src={
-    'https://avatars.dicebear.com/api/male/username.svg'}
+                      size={"2xl"}
+                      src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </Center>
                   <br />

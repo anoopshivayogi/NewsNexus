@@ -1,17 +1,17 @@
-import './App.css';
+import "./App.css";
 
-import {ColorModeScript} from '@chakra-ui/react'
-import {useEffect, useState} from 'react';
+import { ColorModeScript } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
-import api from './api/axiosConfig';
-import DataTabs from './components/DataTabs';
-import Nav from './components/Nav';
+import api from "./api/axiosConfig";
+import DataTabs from "./components/DataTabs";
+import Nav from "./components/Nav";
 
 function groupObjectsByCategory(objects) {
   const result = {};
 
   objects.forEach((obj) => {
-    const {category, ...restData} = obj;
+    const { category, ...restData } = obj;
 
     if (!result[category]) {
       result[category] = [];
@@ -26,8 +26,7 @@ function groupObjectsByCategory(objects) {
 function App() {
   const [news, setNews] = useState([]);
 
-  const getNews =
-      async () => {
+  const getNews = async () => {
     try {
       const response = await api.get("/api/v1/news");
       console.log(response.data);
@@ -37,15 +36,19 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  useEffect(() => { getNews(); }, []);
+  useEffect(() => {
+    getNews();
+  }, []);
 
-  return (<div className = "App"><ColorModeScript initialColorMode =
-                                  { "dark" } />
-        <Nav setData={setNews}/>
-          <DataTabs data = { news } />
-      </div>);
+  return (
+    <div className="App">
+      <ColorModeScript initialColorMode={"dark"} />
+      <Nav setData={setNews} />
+      <DataTabs data={news} />
+    </div>
+  );
 }
 
 export default App;
