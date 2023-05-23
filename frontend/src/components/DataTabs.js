@@ -1,11 +1,6 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Flex, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from '@chakra-ui/react';
+import { Flex, Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from '@chakra-ui/react';
 
-
-// function Categories() {
-    // 1. Create the component
-   
-    
 
     function DataTabs({ data }) {
       return (
@@ -18,9 +13,9 @@ import { Flex, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider,
           <TabPanels>
             {Object.keys(data)?.map((tab, index) => (
               <TabPanel key={index} p={4}>
-                <Flex flexWrap="wrap" justifyContent="space-between">
+                <Flex flexWrap="wrap" justifyContent="flex-start">
                   {data[tab]?.map((item, innerIndex) => (
-                    <Card key={innerIndex} maxW='sm' mb={4} flexBasis="45%">
+                    <Card key={innerIndex} maxW='md' mb={4} margin={3}>
                       <CardBody>
                         <Image
                           src={item.imageSrc}
@@ -29,23 +24,19 @@ import { Flex, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider,
                         />
                         <Stack mt='6' spacing='3'>
                           <Heading size='md'>{item.title}</Heading>
+                          <Box height="100px" overflow="hidden">
                           <Text>{item.description}</Text>
-                          <Text color='blue.600' fontSize='2xl'>
-                            {item.price}
-                          </Text>
+                          </Box>
                         </Stack>
                       </CardBody>
-                      <Divider />
-                      <CardFooter>
+                      {/* <Divider /> */}
+                      {/* <CardFooter>
                         <ButtonGroup spacing='2'>
-                          <Button variant='solid' colorScheme='blue'>
-                            Buy now
-                          </Button>
                           <Button variant='ghost' colorScheme='blue'>
-                            Add to cart
+                            Visit
                           </Button>
                         </ButtonGroup>
-                      </CardFooter>
+                      </CardFooter> */}
                     </Card>
                   ))}
                 </Flex>
