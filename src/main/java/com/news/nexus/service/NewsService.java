@@ -28,6 +28,10 @@ public class NewsService {
         return newsRepository.findNewsByCategoryOrderByPubDate(category);
     }
 
+    public List<News> NewsByTitleContainingIgnoreCase(String keyword){
+        return newsRepository.findNewsByTitleContainingIgnoreCase(keyword);
+    }
+
 
 
 
