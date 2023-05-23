@@ -24,7 +24,7 @@ public class News {
     private String pubDate;
     private String full_description;
     private String source_id;
-    private List<String> country;
     private String category;
     private String language;
+    private String image_url;
 }
