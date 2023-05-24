@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
@@ -15,5 +15,5 @@ root.render(
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
