@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -36,6 +37,45 @@ import { SearchBar } from './SearchBar';
 
 
 export default function Nav({showSearchBar, setData}) {
+  useEffect(() => {
+    requestNotificationPermission();
+  }, []);
+
+
+  const showNotification = () => {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      let notification = new Notification("Lucknow Gets Own IPL Team: All You Need To Know About Sanjiv Goenka's Lucknow IPL Team", {
+        body: 'This is an alert notification!',
+        icon: '../resources/news.png' // Replace with the path to your notification icon
+      });
+      notification.onclick = function() {
+        window.open('http://stackoverflow.com/a/13328397/1269037');
+       };
+    }
+  };
+  
+  const requestNotificationPermission = async () => {
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+    else if ('Notification' in window && Notification.permission === 'granted') {
+      let notification = new Notification("Lucknow Gets Own IPL Team: All You Need To Know About Sanjiv Goenka's Lucknow IPL Team", {
+        body: 'Sanjiv Goenka, owner of RPSG Group won the bid for new IPL Franchise and it will have new team of Lucknow IPL in Uttar Pradesh',
+        icon: '../resources/news.png'
+      });
+      notification.onclick = function() {
+        window.open('https://www.sentinelassam.com/sports-news/lucknow-gets-own-ipl-team-all-you-need-to-know-about-sanjiv-goenkas-lucknow-ipl-team-560551');
+       };
+    }
+    else if ('Notification' in window && Notification.permission !== 'granted') {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        console.log('Notification permission granted!');
+      }
+    }
+  };
+  
+
   const { colorMode, toggleColorMode } = useColorMode();
 //   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
