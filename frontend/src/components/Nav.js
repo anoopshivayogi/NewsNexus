@@ -36,25 +36,15 @@ import { SearchBar } from './SearchBar';
 
 
 
-export default function Nav({showSearchBar, setData}) {
+export default function Nav({isDashboard, setData}) {
   useEffect(() => {
     requestNotificationPermission();
   }, []);
 
-
-  const showNotification = () => {
-    if ('Notification' in window && Notification.permission === 'granted') {
-      let notification = new Notification("Lucknow Gets Own IPL Team: All You Need To Know About Sanjiv Goenka's Lucknow IPL Team", {
-        body: 'This is an alert notification!',
-        icon: '../resources/news.png' // Replace with the path to your notification icon
-      });
-      notification.onclick = function() {
-        window.open('http://stackoverflow.com/a/13328397/1269037');
-       };
-    }
-  };
   
   const requestNotificationPermission = async () => {
+    // send notification only if the URL is dashboard
+    if(isDashboard){
     if (!("Notification" in window)) {
       alert("This browser does not support desktop notification");
     }
@@ -73,6 +63,7 @@ export default function Nav({showSearchBar, setData}) {
         console.log('Notification permission granted!');
       }
     }
+  }
   };
   
 
@@ -84,7 +75,7 @@ export default function Nav({showSearchBar, setData}) {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>News Nexus</Box>
 
-          {showSearchBar && <SearchBar setData={setData} />}
+          {isDashboard && <SearchBar setData={setData} />}
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
