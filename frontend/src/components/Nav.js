@@ -35,7 +35,7 @@ import { SearchBar } from './SearchBar';
 
 
 
-export default function Nav({data, setData}) {
+export default function Nav({showSearchBar, setData}) {
   const { colorMode, toggleColorMode } = useColorMode();
 //   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -44,7 +44,7 @@ export default function Nav({data, setData}) {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>News Nexus</Box>
 
-          <SearchBar setData={setData} />
+          {showSearchBar && <SearchBar setData={setData} />}
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
@@ -78,6 +78,7 @@ export default function Nav({data, setData}) {
                   </Center>
                   <br />
                   <MenuDivider />
+                  <MenuItem>Admin</MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>
