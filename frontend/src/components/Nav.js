@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -37,9 +38,14 @@ import { SearchBar } from './SearchBar';
 
 
 export default function Nav({isDashboard, setData}) {
+  const navigate = useNavigate();
   useEffect(() => {
     requestNotificationPermission();
   }, []);
+
+  const handleClick = (path) => {
+    navigate(`/${path}`); 
+  };
 
   
   const requestNotificationPermission = async () => {
@@ -109,7 +115,8 @@ export default function Nav({isDashboard, setData}) {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Admin</MenuItem>
+                  <MenuItem onClick={() => handleClick("dashboard")}>Dashboard</MenuItem>
+                  <MenuItem onClick={() => handleClick("admin")}>Admin</MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>

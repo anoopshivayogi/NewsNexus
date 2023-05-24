@@ -1,4 +1,3 @@
-import './App.css';
 import Nav from './components/Nav';
 import { ColorModeScript } from '@chakra-ui/react'
 import DataTabs from './components/DataTabs';
