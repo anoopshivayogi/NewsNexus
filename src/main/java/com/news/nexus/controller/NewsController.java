@@ -37,8 +37,22 @@ public class NewsController {
     @GetMapping(value = {"/search/{keyword}", "/search/", "/search"})
     @CrossOrigin
     public ResponseEntity<List<News>> GetNewsByTitleContainingIgnoreCase(@PathVariable(required = false) String keyword){
-        return new ResponseEntity<>(newsService.NewsByTitleContainingIgnoreCase(keyword), HttpStatus.OK);
+        return new ResponseEntity<>(newsService.newsByTitleContainingIgnoreCase(keyword), HttpStatus.OK);
     }
+
+    @GetMapping("/categories")
+    @CrossOrigin
+    public ResponseEntity<List<String>> getAllCategories() {
+        return new ResponseEntity<>(newsService.allCategories(), HttpStatus.OK);
+    }
+
+    @GetMapping("/sources")
+    @CrossOrigin
+    public ResponseEntity<List<String>> getAllSources() {
+        return new ResponseEntity<>(newsService.allSources(), HttpStatus.OK);
+    }
+
+
 
 
 }
