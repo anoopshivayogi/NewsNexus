@@ -1,12 +1,11 @@
-import './App.css';
 import Nav from './components/Nav';
 import { ColorModeScript } from '@chakra-ui/react'
 import DataTabs from './components/DataTabs';
 import { useState, useEffect } from 'react';
 import api from './api/axiosConfig';
 import { Routes, Route, useLocation} from 'react-router-dom';
+import Admin from './components/Admin';
 
-const showSearchBar = location.pathname === '/dashboard';
 
 function groupObjectsByCategory(objects) {
   const result = {};
@@ -25,6 +24,8 @@ function groupObjectsByCategory(objects) {
 }
 
 function App() {
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
   const [news, setNews] = useState([]);
 
   const getNews = async () => {
@@ -47,9 +48,10 @@ function App() {
   return (
       <div className="App">
         <ColorModeScript initialColorMode={"dark"} />
-        <Nav setData={setNews} showSearchBar={showSearchBar}/>
+        <Nav setData={setNews} isDashboard={isDashboard}/>
         <Routes>
           <Route path='/dashboard' element={  <DataTabs data={news}/> }/>
+          <Route path='/admin' element={<Admin />} />
         </Routes>
       </div>
   );
