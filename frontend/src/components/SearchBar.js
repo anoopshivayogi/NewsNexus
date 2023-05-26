@@ -10,23 +10,27 @@ import { Search2Icon } from "@chakra-ui/icons";
 import api from "../api/axiosConfig";
 import { useState } from 'react';
 
-function groupObjectsByCategory(objects) {
+function groupObjectsByCategory(objects, categories, sources) {
+  
   const result = {};
 
   objects.forEach((obj) => {
-    const { category, ...restData } = obj;
+    const { category, source_id, ...restData } = obj;
+  
+    if((categories[category] === true && sources[source_id] == true)){
 
     if (!result[category]) {
       result[category] = [];
     }
-
-    result[category].push(restData);
-  });
+    const dataWithSourceId = { ...restData, source_id };
+    result[category].push(dataWithSourceId);
+  }
+});
 
   return result;
 }
 
-export const SearchBar = ({setData}) => {
+export const SearchBar = ({setData, categories, sources}) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = (event) => {
@@ -37,7 +41,7 @@ export const SearchBar = ({setData}) => {
     try {
       const response = await api.get(`/api/v1/news/search/${searchQuery}`);
       console.log(response.data);
-      const newsData = groupObjectsByCategory(response.data);
+      const newsData = groupObjectsByCategory(response.data, categories, sources);
       setData(newsData);
       console.log(newsData);
 
@@ -46,7 +50,10 @@ export const SearchBar = ({setData}) => {
     }
   };
 
-  useEffect(()=>{handleSearch();}, [searchQuery]);
+  useEffect(()=>{
+    handleSearch();
+  }, [searchQuery, categories, sources]);
+
 
   return (
     <>

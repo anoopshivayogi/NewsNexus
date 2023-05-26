@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsService {
@@ -29,7 +30,7 @@ public class NewsService {
         return newsRepository.findNewsByCategoryOrderByPubDate(category);
     }
 
-    public List<News> NewsByTitleContainingIgnoreCase(String keyword){
+    public List<News> newsByTitleContainingIgnoreCase(String keyword){
         if (StringUtils.isEmpty(keyword)) {
             // Handle empty search query, such as returning all news
             return newsRepository.findAll();
@@ -38,6 +39,24 @@ public class NewsService {
             return newsRepository.findNewsByTitleContainingIgnoreCase(keyword);
         }
 
+    }
+
+    public List<String> allCategories() {
+        List<News> allNews = newsRepository.findAll();
+        List<String> categories = allNews.stream()
+                .map(News::getCategory)
+                .distinct()
+                .collect(Collectors.toList());
+        return categories;
+    }
+
+    public List<String> allSources() {
+        List<News> allNews = newsRepository.findAll();
+        List<String> sources = allNews.stream()
+                .map(News::getSource_id)
+                .distinct()
+                .collect(Collectors.toList());
+        return sources;
     }
 
 

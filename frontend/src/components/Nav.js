@@ -21,23 +21,9 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { SearchBar } from './SearchBar';
 
-// const NavLink = ({ children }: { children: ReactNode }) => (
-//   <Link
-//     px={2}
-//     py={1}
-//     rounded={'md'}
-//     _hover={{
-//       textDecoration: 'none',
-//       bg: useColorModeValue('gray.200', 'gray.700'),
-//     }}
-//     href={'#'}>
-//     {children}
-//   </Link>
-// );
 
 
-
-export default function Nav({isDashboard, setData}) {
+export default function Nav({isDashboard, setData, categories, sources}) {
   const navigate = useNavigate();
   useEffect(() => {
     requestNotificationPermission();
@@ -51,10 +37,8 @@ export default function Nav({isDashboard, setData}) {
   const requestNotificationPermission = async () => {
     // send notification only if the URL is dashboard
     if(isDashboard){
-    if (!("Notification" in window)) {
-      alert("This browser does not support desktop notification");
-    }
-    else if ('Notification' in window && Notification.permission === 'granted') {
+
+    if ('Notification' in window && Notification.permission === 'granted') {
       let notification = new Notification("Lucknow Gets Own IPL Team: All You Need To Know About Sanjiv Goenka's Lucknow IPL Team", {
         body: 'Sanjiv Goenka, owner of RPSG Group won the bid for new IPL Franchise and it will have new team of Lucknow IPL in Uttar Pradesh',
         icon: '../resources/news.png'
@@ -74,14 +58,13 @@ export default function Nav({isDashboard, setData}) {
   
 
   const { colorMode, toggleColorMode } = useColorMode();
-//   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>News Nexus</Box>
 
-          {isDashboard && <SearchBar setData={setData} />}
+          {isDashboard && <SearchBar setData={setData} categories={categories} sources={sources} />}
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
