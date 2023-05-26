@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import api from './api/axiosConfig';
 import { Routes, Route, useLocation} from 'react-router-dom';
 import Admin from './components/Admin';
+import Login from './components/Login';
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <ColorModeScript initialColorMode={"dark"} />
         <Nav setData={setNews} isDashboard={isDashboard} categories={categories} sources={sources}/>
         <Routes>
+          <Route path='/' element={ <Login /> } />
           <Route path='/dashboard' element={  <DataTabs data={news}/> }/>
           <Route path='/admin' element={ <Admin categories={categories} sources={sources}
            setCategories={setCategories} setSources={setSources}/>} />
