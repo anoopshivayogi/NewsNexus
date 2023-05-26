@@ -27,7 +27,8 @@ function App() {
   const location = useLocation();
   const isDashboard = location.pathname === '/dashboard';
   const [news, setNews] = useState([]);
-
+  const [categories, setCategories] = useState([]);
+  const [sources, setSources] = useState([]);
   const getNews = async () => {
     try{
         const response = await api.get("/api/v1/news");
@@ -40,9 +41,23 @@ function App() {
       console.log(err);
     }
   }
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/api/v1/admin"); 
+      const data = response.data[0]; 
+      setCategories(data.categories);
+      console.log(data.categories);
+      setSources(data.sources);
+      console.log(data.sources);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   
   useEffect(()=>{
     getNews();
+    fetchData();
   }, []);
 
   return (
@@ -51,7 +66,8 @@ function App() {
         <Nav setData={setNews} isDashboard={isDashboard}/>
         <Routes>
           <Route path='/dashboard' element={  <DataTabs data={news}/> }/>
-          <Route path='/admin' element={<Admin />} />
+          <Route path='/admin' element={ <Admin categories={categories} sources={sources}
+           setCategories={setCategories} setSources={setSources}/>} />
         </Routes>
       </div>
   );
