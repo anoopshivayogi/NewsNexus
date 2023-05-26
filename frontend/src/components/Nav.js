@@ -1,18 +1,16 @@
-import { ReactNode } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
+  chakra,
   Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
@@ -32,6 +30,12 @@ export default function Nav({isDashboard, setData, categories, sources}) {
   const handleClick = (path) => {
     navigate(`/${path}`); 
   };
+
+  const ClickableBox = chakra(Box, {
+    baseStyle: {
+      cursor: 'pointer',
+    },
+  });
 
   
   const requestNotificationPermission = async () => {
@@ -62,7 +66,8 @@ export default function Nav({isDashboard, setData, categories, sources}) {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>News Nexus</Box>
+
+          <ClickableBox onClick={() => handleClick("dashboard")}>News Nexus</ClickableBox>
 
           {isDashboard && <SearchBar setData={setData} categories={categories} sources={sources} />}
 
