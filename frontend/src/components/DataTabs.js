@@ -1,8 +1,23 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Flex, Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Link, Divider } from '@chakra-ui/react';
+import {
+  Box,
+  Card,
+  CardBody,
+  CardFooter,
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text
+} from '@chakra-ui/react'
 
-
-    function DataTabs({ data }) {
+function DataTabs({data}) {
       return (
         <Tabs marginTop="25px" marginLeft="20px" size="lg">
           <TabList>
@@ -32,7 +47,8 @@ import { Flex, Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Lin
                         </CardBody>
                         <Divider />
                         <CardFooter>
-                          <em style={{ fontStyle: "italic" }}>
+                          <em style={{
+      fontStyle: "italic" }}>
                             source: {item.source_id}
                           </em>
                         </CardFooter>
