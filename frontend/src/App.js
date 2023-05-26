@@ -7,21 +7,6 @@ import { Routes, Route, useLocation} from 'react-router-dom';
 import Admin from './components/Admin';
 
 
-function groupObjectsByCategory(objects) {
-  const result = {};
-
-  objects.forEach((obj) => {
-    const { category, ...restData } = obj;
-
-    if (!result[category]) {
-      result[category] = [];
-    }
-
-    result[category].push(restData);
-  });
-
-  return result;
-}
 
 function App() {
   const location = useLocation();
@@ -29,41 +14,29 @@ function App() {
   const [news, setNews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [sources, setSources] = useState([]);
-  const getNews = async () => {
-    try{
-        const response = await api.get("/api/v1/news");
-        console.log(response.data);
-        const newsData = groupObjectsByCategory(response.data);
-        setNews(newsData);
-        console.log(newsData);
-    }
-    catch(err){
-      console.log(err);
-    }
-  }
+ 
 
-  const fetchData = async () => {
-    try {
-      const response = await api.get("/api/v1/admin"); 
-      const data = response.data[0]; 
-      setCategories(data.categories);
-      console.log(data.categories);
-      setSources(data.sources);
-      console.log(data.sources);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-  
-  useEffect(()=>{
-    getNews();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/api/v1/admin");
+        const data = response.data[0];
+        setCategories(data.categories);
+        console.log(data.categories);
+        setSources(data.sources);
+        console.log(data.sources);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
     fetchData();
   }, []);
 
   return (
       <div className="App">
         <ColorModeScript initialColorMode={"dark"} />
-        <Nav setData={setNews} isDashboard={isDashboard}/>
+        <Nav setData={setNews} isDashboard={isDashboard} categories={categories} sources={sources}/>
         <Routes>
           <Route path='/dashboard' element={  <DataTabs data={news}/> }/>
           <Route path='/admin' element={ <Admin categories={categories} sources={sources}
