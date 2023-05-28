@@ -6,6 +6,7 @@ import api from './api/axiosConfig';
 import { Routes, Route, useLocation} from 'react-router-dom';
 import Admin from './components/Admin';
 import Login from './components/Login';
+import ProtectedRoutes from './components/ProtectedRoute';
 
 
 
@@ -40,9 +41,11 @@ function App() {
         <Nav setData={setNews} isDashboard={isDashboard} categories={categories} sources={sources}/>
         <Routes>
           <Route path='/' element={ <Login /> } />
+          <Route element={<ProtectedRoutes />}>
           <Route path='/dashboard' element={  <DataTabs data={news}/> }/>
           <Route path='/admin' element={ <Admin categories={categories} sources={sources}
            setCategories={setCategories} setSources={setSources}/>} />
+          </Route>
         </Routes>
       </div>
   );
