@@ -1,17 +1,17 @@
-import {ColorModeScript} from '@chakra-ui/react'
-import {useEffect, useState} from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
+import { ColorModeScript } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-import api from './api/axiosConfig';
-import Admin from './components/Admin';
-import DataTabs from './components/DataTabs';
-import Login from './components/Login';
-import Nav from './components/Nav';
-import ProtectedRoutes from './components/ProtectedRoute';
+import api from "./api/axiosConfig";
+import Admin from "./components/Admin";
+import DataTabs from "./components/DataTabs";
+import Login from "./components/Login";
+import Nav from "./components/Nav";
+import ProtectedRoutes from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
-  const isDashboard = location.pathname === '/dashboard';
+  const isDashboard = location.pathname === "/dashboard";
   const [news, setNews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [sources, setSources] = useState([]);
@@ -26,7 +26,7 @@ function App() {
         setSources(data.sources);
         console.log(data.sources);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -34,21 +34,33 @@ function App() {
   }, []);
 
   return (
-      <div className="App">
-        <ColorModeScript initialColorMode={
-    "dark"} />
-        <Nav setData={setNews} isDashboard={isDashboard} categories={categories} sources={sources}/>
-        <Routes>
-          <Route path='/' element={
-    <Login /> } />
-          <Route element={<ProtectedRoutes />
-}
-> < Route path = '/dashboard' element = {<DataTabs data = { news } /> }/><
-                                             Route path = '/admin' element = { <Admin categories={categories} sources={sources}
-           setCategories={setCategories} setSources={setSources}/>} />
-          </Route>
-        </Routes>
-      </div>
+    <div className="App">
+      <ColorModeScript initialColorMode={"dark"} />
+      <Nav
+        setData={setNews}
+        isDashboard={isDashboard}
+        categories={categories}
+        sources={sources}
+      />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<ProtectedRoutes />}>
+          {" "}
+          <Route path="/dashboard" element={<DataTabs data={news} />} />
+          <Route
+            path="/admin"
+            element={
+              <Admin
+                categories={categories}
+                sources={sources}
+                setCategories={setCategories}
+                setSources={setSources}
+              />
+            }
+          />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
