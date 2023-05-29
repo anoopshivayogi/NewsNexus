@@ -16,9 +16,15 @@ const useAuth = () => {
 };
 
 const ProtectedRoutes = () => {
-  const isAuth = useAuth();
+  const { isAuthenticated, isLoading } = useAuth0();
 
-  return isAuth ? <Outlet /> : <Navigate to="/" />;
+  if (isLoading) {
+    // Show a loading spinner or placeholder while the authentication state is being determined
+    return <LoadingSpinner />;
+  }
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+
 };
 
 export default ProtectedRoutes;
