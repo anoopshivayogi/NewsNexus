@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   chakra,
   Box,
@@ -61,6 +63,11 @@ export default function Nav({isDashboard, setData, categories, sources}) {
   };
   
 
+  const { logout } = useAuth0();
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
+  };
+
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
@@ -105,7 +112,7 @@ export default function Nav({isDashboard, setData, categories, sources}) {
                   <MenuDivider />
                   <MenuItem onClick={() => handleClick("dashboard")}>Dashboard</MenuItem>
                   <MenuItem onClick={() => handleClick("admin")}>Admin</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
