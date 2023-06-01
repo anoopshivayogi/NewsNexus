@@ -18,11 +18,13 @@ To run the NewsNexus project, the following dependencies are required:
 Follow these steps to run the NewsNexus project:
 
 1. Run the backend:
+
    - Open the Spring Boot Dashboard extension in your IDE (e.g., VS Code).
    - Locate our app (nexus) and click on "Run" to start the backend server.
    - If you encounter any errors, make sure to install the suggested dependencies.
 
 2. Run the frontend:
+
    - Open a new terminal and navigate to the "frontend" directory.
    - Run the following commands in the terminal:
      ```
