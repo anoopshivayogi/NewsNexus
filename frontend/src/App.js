@@ -1,14 +1,16 @@
-import './App.css';
-import Nav from './components/Nav';
-import { ColorModeScript } from '@chakra-ui/react'
-import DataTabs from './components/DataTabs';
-import { useState, useEffect } from 'react';
-import api from './api/axiosConfig';
+import "./App.css";
+
+import { ColorModeScript } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+
+import api from "./api/axiosConfig";
+import DataTabs from "./components/DataTabs";
+import Nav from "./components/Nav";
 
 // Login component
 function Login({ handleLogin }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +75,7 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     getNews();
