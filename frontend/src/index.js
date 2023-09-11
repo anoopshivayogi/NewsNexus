@@ -12,8 +12,8 @@ root.render(
     <ChakraProvider>
       <BrowserRouter>
           <Auth0Provider
-            domain="dev-xq4hratb1ugwnf72.us.auth0.com"
-            clientId="qbcWyi8AYXdJpEvQLjkKy1nvsCByRvaE"
+            domain="dev-ajn5u5fr4thrnyzh.us.auth0.com"
+            clientId="klOimWmeecEknsNvfdcBxLzoYdlrkUZP"
             redirectUri={window.location.origin}
             onRedirectCallback={() => {}}
             useRefreshTokens={true}
