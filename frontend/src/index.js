@@ -13,7 +13,7 @@ root.render(
       <BrowserRouter>
           <Auth0Provider
             domain="dev-ajn5u5fr4thrnyzh.us.auth0.com"
-            clientId="klOimWmeecEknsNvfdcBxLzoYdlrkUZP"
+            clientId="laDjmv8C5ogisnlbtKIASh7m4zrJ5sjx"
             redirectUri={window.location.origin}
             onRedirectCallback={() => {}}
             useRefreshTokens={true}
